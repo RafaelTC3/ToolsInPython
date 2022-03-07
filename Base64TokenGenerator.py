@@ -1,30 +1,29 @@
 import base64
 
 
-def create_basic_auth(user: str, password: str):
+def create_basic_auth(user: str, password: str) -> str:
     message = f"{user}:{password}"
     message_bytes = message.encode("ascii")
     base64_bytes = base64.b64encode(message_bytes)
     base64_message = base64_bytes.decode("ascii")
 
-    print(base64_message)
+    return base64_message
 
 
-def simple_encoding(value: str):
-
+def simple_encoding(value: str) -> str:
     message_bytes = value.encode("ascii")
     base64_bytes = base64.b64encode(message_bytes)
     base64_message = base64_bytes.decode("ascii")
 
-    print(base64_message)
+    return base64_message
 
 
-def base64_decode(value: str):
+def base64_decode(value: str) -> str:
     value_bytes = value.encode("ascii")
     base64_bytes = base64.b64decode(value_bytes)
     message = base64_bytes.decode("ascii")
 
-    print(message)
+    return message
 
 
 def select_action():
@@ -38,12 +37,12 @@ def select_action():
         user = input()
         print("Insert password")
         password = input()
-        create_basic_auth(user, password)
+        print(create_basic_auth(user, password))
     elif option == "2":
         print("Insert value to be encoded")
         value = input()
-        simple_encoding(value)
+        print(simple_encoding(value))
     else:
         print("Insert value to be decoded")
         value = input()
-        base64_decode(value)
+        print(base64_decode(value))
