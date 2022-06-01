@@ -2,9 +2,10 @@ import os
 import pandas as pd
 
 
-def csv_to_json(xls_file_path, csv_file_path, json_file_path, update_csv_file_path):
+def csv_to_json(sheet_name, xls_file_path, csv_file_path, json_file_path, update_csv_file_path):
     """
     Methods to transform a csv file into a json file
+    :param sheet_name:
     :param xls_file_path:
     :param csv_file_path:
     :param json_file_path:
@@ -12,9 +13,10 @@ def csv_to_json(xls_file_path, csv_file_path, json_file_path, update_csv_file_pa
     :return:
     """
 
-    def transform_xlsx_to_csv(xlsx_file, csv_path):
+    def transform_xlsx_to_csv(sheet_name, xlsx_file, csv_path):
         """
         The input file is in .xlsx format, to make it easier to manipulate it, let's transform it into .csv format
+        :param sheet_name:
         :param xlsx_file: Path where the file is
         :param csv_path: Path where the csv file will be save
         :return: csv file
@@ -22,7 +24,7 @@ def csv_to_json(xls_file_path, csv_file_path, json_file_path, update_csv_file_pa
         print(" - Starting method transform_xlsx_to_csv")
         print(" - Converting .xlsx to .csv")
 
-        read_file = pd.read_excel(xlsx_file, sheet_name="", engine="openpyxl")
+        read_file = pd.read_excel(xlsx_file, sheet_name=sheet_name, engine="openpyxl")
         csv_file = read_file.to_csv(csv_path, index=None, header=True)
 
         print(" - Generating new .csv file")
@@ -81,7 +83,7 @@ def csv_to_json(xls_file_path, csv_file_path, json_file_path, update_csv_file_pa
         print(" - Finishing method create_json")
         return df.to_json(json_path, orient='records', force_ascii=False, indent=4)
 
-    transform_xlsx_to_csv(xls_file_path, csv_file_path)
+    transform_xlsx_to_csv(sheet_name, xls_file_path, csv_file_path)
 
     update_csv_headers(csv_file_path, update_csv_file_path)
 

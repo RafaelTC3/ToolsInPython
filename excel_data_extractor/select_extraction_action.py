@@ -1,5 +1,5 @@
 from .message import csv_to_json
-from .config import Path
+from .config import Path, Sheet
 from .import_mongo import insert_data, update_data
 
 
@@ -13,6 +13,7 @@ def init_process():
         try:
             print("Converting Excel data to JSON")
             csv_to_json(
+                Sheet["sheetName"],
                 Path["excelFilePath"],
                 Path["csvFilePath"],
                 Path["jsonFilePath"],
