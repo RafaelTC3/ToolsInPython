@@ -12,6 +12,6 @@ def test_read_excel_write_csv_create_json():
                         Path["csvFilePath"],
                         Path["jsonFilePath"],
                         Path["newCsvFile"])
-    assert(os.path.exists(Path["csvFilePath"]), True)
-    assert(os.path.exists(Path["jsonFilePath"]), True)
-    assert(os.path.exists(Path["newCsvFile"]), True)
+    assert os.path.exists(Path["csvFilePath"]) == True
+    assert os.path.exists(Path["jsonFilePath"]) == True
+    assert os.path.exists(Path["newCsvFile"]) == True
