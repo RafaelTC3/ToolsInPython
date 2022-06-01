@@ -1,7 +1,9 @@
 import pandas as pd
 import datetime
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import lit
+
+
+# from pyspark.sql import SparkSession
+# from pyspark.sql.functions import lit
 
 
 def replace_csv_value(csv_file_path: str, column_name: str, new_column_value: str):
@@ -9,7 +11,7 @@ def replace_csv_value(csv_file_path: str, column_name: str, new_column_value: st
     path = csv_file_path.split(".csv")
 
     csv = pd.read_csv(
-       csv_file_path, delimiter="|", dtype=str
+        csv_file_path, delimiter="|", dtype=str
     )
     csv[column_name] = new_column_value
     csv.to_csv(
@@ -23,7 +25,6 @@ def replace_csv_value(csv_file_path: str, column_name: str, new_column_value: st
 
     print(f"Time elapsed with pandas: {total_time}")
 
-
 # def replace_csv_value_spark(csv_file_path: str, column_name: str, new_column_value: str):
 #    ps = SparkSession.builder.getOrCreate()
 #    start = datetime.datetime.now()
@@ -34,7 +35,7 @@ def replace_csv_value(csv_file_path: str, column_name: str, new_column_value: st
 #        .fillna("")
 #    )
 #    csv2 = csv.withColumn(column_name, lit(new_column_value))
-    # csv2.show(truncate=False)
+# csv2.show(truncate=False)
 #    csv2.write.mode("overwrite").csv(
 #        f"{path[0]}_column_renamed_spark.csv"
 #    )
